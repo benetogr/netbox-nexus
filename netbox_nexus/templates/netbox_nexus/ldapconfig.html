@@ -1,0 +1,42 @@
+{% extends 'generic/object.html' %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col col-md-6">
+        <div class="card">
+            <h5 class="card-header">LDAP Configuration</h5>
+            <div class="card-body">
+                <table class="table table-hover attr-table">
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Server URI</th>
+                        <td>{{ object.server_uri }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bind DN</th>
+                        <td>{{ object.bind_dn }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Search Base</th>
+                        <td>{{ object.search_base }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-6">
+        <div class="card">
+            <h5 class="card-header">Actions</h5>
+            <div class="card-body">
+                <a href="{% url 'plugins:netbox_nexus:ldapconfig_sync' pk=object.pk %}" class="btn btn-primary">
+                    <i class="mdi mdi-sync"></i> Sync Now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

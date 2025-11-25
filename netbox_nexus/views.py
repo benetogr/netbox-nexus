@@ -3,10 +3,12 @@ from django.contrib import messages
 from netbox.views import generic
 from .models import NetdiscoConfig, CUCMConfig, LDAPConfig, SyncLog
 from .forms import NetdiscoConfigForm, CUCMConfigForm, LDAPConfigForm
+from .tables import NetdiscoConfigTable, CUCMConfigTable, LDAPConfigTable, SyncLogTable
 
 # Netdisco
 class NetdiscoConfigListView(generic.ObjectListView):
     queryset = NetdiscoConfig.objects.all()
+    table = NetdiscoConfigTable
 
 class NetdiscoConfigView(generic.ObjectView):
     queryset = NetdiscoConfig.objects.all()
@@ -44,6 +46,7 @@ class NetdiscoSyncView(generic.ObjectView):
 # CUCM
 class CUCMConfigListView(generic.ObjectListView):
     queryset = CUCMConfig.objects.all()
+    table = CUCMConfigTable
 
 class CUCMConfigView(generic.ObjectView):
     queryset = CUCMConfig.objects.all()
@@ -81,6 +84,7 @@ class CUCMSyncView(generic.ObjectView):
 # LDAP
 class LDAPConfigListView(generic.ObjectListView):
     queryset = LDAPConfig.objects.all()
+    table = LDAPConfigTable
 
 class LDAPConfigView(generic.ObjectView):
     queryset = LDAPConfig.objects.all()
@@ -118,6 +122,7 @@ class LDAPSyncView(generic.ObjectView):
 # Logs
 class SyncLogListView(generic.ObjectListView):
     queryset = SyncLog.objects.all()
+    table = SyncLogTable
 
 class SyncLogView(generic.ObjectView):
     queryset = SyncLog.objects.all()

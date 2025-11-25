@@ -1,0 +1,46 @@
+{% extends 'generic/object.html' %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col col-md-6">
+        <div class="card">
+            <h5 class="card-header">Netdisco Configuration</h5>
+            <div class="card-body">
+                <table class="table table-hover attr-table">
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Base URL</th>
+                        <td><a href="{{ object.base_url }}" target="_blank">{{ object.base_url }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">DB Host</th>
+                        <td>{{ object.db_host }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">DB Name</th>
+                        <td>{{ object.db_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">DB User</th>
+                        <td>{{ object.db_user }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-6">
+        <div class="card">
+            <h5 class="card-header">Actions</h5>
+            <div class="card-body">
+                <a href="{% url 'plugins:netbox_nexus:netdiscoconfig_sync' pk=object.pk %}" class="btn btn-primary">
+                    <i class="mdi mdi-sync"></i> Sync Now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

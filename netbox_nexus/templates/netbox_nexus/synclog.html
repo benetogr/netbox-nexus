@@ -1,0 +1,34 @@
+{% extends 'generic/object.html' %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col col-md-12">
+        <div class="card">
+            <h5 class="card-header">Sync Log</h5>
+            <div class="card-body">
+                <table class="table table-hover attr-table">
+                    <tr>
+                        <th scope="row">Source</th>
+                        <td>{{ object.source }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{ object.status }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Timestamp</th>
+                        <td>{{ object.timestamp }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Message</th>
+                        <td>
+                            <pre>{{ object.message }}</pre>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
