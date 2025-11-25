@@ -46,8 +46,19 @@ fi
 # 3. Run Migrations
 echo "Running migrations..."
 cd "$NETBOX_ROOT/netbox"
+
+# Temporarily enable DEVELOPER mode to allow makemigrations
+echo "Enabling DEVELOPER mode temporarily..."
+echo "DEVELOPER = True" >> "$CONFIG_PATH"
+
 python3 manage.py makemigrations netbox_nexus
 python3 manage.py migrate
+
+# Revert DEVELOPER mode (remove the last line we added)
+# We use a safe approach: only remove if it matches what we added
+# But for simplicity in this script, assuming we just appended it:
+sed -i '$d' "$CONFIG_PATH"
+echo "Reverted DEVELOPER mode."
 
 # 4. Collect Static (if needed, usually for plugins with static files)
 # python3 manage.py collectstatic --no-input
