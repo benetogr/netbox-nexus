@@ -1,0 +1,27 @@
+{% extends 'generic/object.html' %}
+{% load helpers %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        Sync LDAP
+    </h5>
+    <div class="card-body">
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            <div class="field-group">
+                <div class="field-value">
+                    <p>Are you sure you want to synchronize users from LDAP using configuration <strong>{{ object
+                            }}</strong>?</p>
+                    <p>This will create or update users in NetBox based on the LDAP directory.</p>
+                </div>
+            </div>
+            <div class="text-end">
+                <a href="{% url 'plugins:netbox_nexus:ldapconfig' pk=object.pk %}"
+                    class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Sync Now</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

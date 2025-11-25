@@ -1,0 +1,27 @@
+{% extends 'generic/object.html' %}
+{% load helpers %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        Sync CUCM
+    </h5>
+    <div class="card-body">
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            <div class="field-group">
+                <div class="field-value">
+                    <p>Are you sure you want to synchronize phones from CUCM using configuration <strong>{{ object
+                            }}</strong>?</p>
+                    <p>This will create or update devices in NetBox based on the CUCM database.</p>
+                </div>
+            </div>
+            <div class="text-end">
+                <a href="{% url 'plugins:netbox_nexus:cucmconfig' pk=object.pk %}"
+                    class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Sync Now</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
