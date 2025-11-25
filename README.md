@@ -12,9 +12,13 @@ A NetBox plugin to integrate with Netdisco, CUCM, and LDAP for automatic network
 
 ### Automatic Installation (Linux)
 
-If you have a standard NetBox installation at `/opt/netbox`, you can use the included installation script:
+Run the following commands on your NetBox server:
 
 ```bash
+cd /opt
+sudo git clone https://github.com/benetogr/netbox-nexus.git
+cd netbox-nexus
+sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
@@ -41,6 +45,7 @@ sudo ./install.sh
 4.  **Run Migrations**:
     ```bash
     cd /opt/netbox/netbox/
+    python3 manage.py makemigrations netbox_nexus
     python3 manage.py migrate
     ```
 

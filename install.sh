@@ -46,6 +46,7 @@ fi
 # 3. Run Migrations
 echo "Running migrations..."
 cd "$NETBOX_ROOT/netbox"
+python3 manage.py makemigrations netbox_nexus
 python3 manage.py migrate
 
 # 4. Collect Static (if needed, usually for plugins with static files)
